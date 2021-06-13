@@ -11,12 +11,10 @@ import org.springframework.context.ApplicationContextInitializer;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.testcontainers.containers.BindMode;
-import org.testcontainers.containers.GenericContainer;
+import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 import org.testcontainers.utility.DockerImageName;
-
-import java.util.Map;
 
 import static org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase.Replace.NONE;
 
@@ -27,17 +25,8 @@ import static org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTest
 public class ProfileRepositoryIT {
 
   @Container
-  private static final GenericContainer<?> POSTGRES =
-      new GenericContainer<>(DockerImageName.parse("postgres:13"))
-          .withExposedPorts(5432)
-          .withEnv(
-              Map.of(
-                  "POSTGRES_USER",
-                  "admin",
-                  "POSTGRES_PASSWORD",
-                  "password",
-                  "POSTGRES_DB",
-                  "exampledb"))
+  private static final PostgreSQLContainer<?> POSTGRES =
+      new PostgreSQLContainer<>(DockerImageName.parse("postgres:13"))
           .withFileSystemBind(
               "./docker-compose/initdb.sh",
               "/docker-entrypoint-initdb.d/initdb.sh",
@@ -50,12 +39,7 @@ public class ProfileRepositoryIT {
       TestPropertyValues.of(
               "spring.datasource.username: username",
               "spring.datasource.password: password",
-              "spring.datasource.url: "
-                  + "jdbc:postgresql://"
-                  + POSTGRES.getHost()
-                  + ":"
-                  + POSTGRES.getMappedPort(5432)
-                  + "/exampledb")
+              "spring.datasource.url: " + POSTGRES.getJdbcUrl())
           .applyTo(applicationContext.getEnvironment());
     }
   }
