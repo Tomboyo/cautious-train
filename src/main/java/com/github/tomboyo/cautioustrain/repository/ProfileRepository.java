@@ -1,6 +1,6 @@
-package com.redhat.thsimmon.repository;
+package com.github.tomboyo.cautioustrain.repository;
 
-import com.redhat.thsimmon.model.Profile;
+import com.github.tomboyo.cautioustrain.model.Profile;
 import org.springframework.data.repository.CrudRepository;
 
 public interface ProfileRepository extends CrudRepository<Profile, Long> {}

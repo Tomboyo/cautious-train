@@ -1,11 +1,11 @@
-package com.redhat.thsimmon.repository;
+package com.github.tomboyo.cautioustrain.repository;
 
-import com.redhat.thsimmon.model.Profile;
+import com.github.tomboyo.cautioustrain.model.Profile;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.util.TestPropertyValues;
 import org.springframework.context.ApplicationContextInitializer;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -18,7 +18,6 @@ import org.testcontainers.utility.DockerImageName;
 
 import java.util.Map;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase.Replace.NONE;
 
 @Testcontainers
@@ -68,6 +67,6 @@ public class ProfileRepositoryIT {
     var profile = new Profile().name("Sam");
 
     repository.save(profile);
-    assertEquals(profile, repository.findById(profile.getId()).orElseThrow());
+    Assertions.assertEquals(profile, repository.findById(profile.getId()).orElseThrow());
   }
 }
