@@ -1,0 +1,13 @@
+spring:
+  cloud:
+    #function:
+    #  # Only required when more than one top-level bean defined
+    #  definition: 'processor'
+    stream:
+      bindings:
+        handler-in-0.destination: 'profiles'
+  datasource:
+    driver-class-name: 'org.postgresql.Driver'
+    username: 'username'
+    password: 'password'
+    url: 'jdbc:postgresql://localhost:5432/exampledb'
