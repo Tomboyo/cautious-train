@@ -2,6 +2,7 @@ package com.github.tomboyo.cautioustrain.repository;
 
 import com.github.tomboyo.cautioustrain.model.Profile;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -26,20 +27,22 @@ public class ProfileRepositoryIT {
 
   @Container
   private static final PostgreSQLContainer<?> POSTGRES =
-      new PostgreSQLContainer<>(DockerImageName.parse("postgres:13"))
-          .withFileSystemBind(
-              "./docker-compose/initdb.sh",
-              "/docker-entrypoint-initdb.d/initdb.sh",
-              BindMode.READ_ONLY);
+      new PostgreSQLContainer<>(DockerImageName.parse("postgres:13"));
+//          .withFileSystemBind(
+//              "./docker-compose/initdb.sh",
+//              "/docker-entrypoint-initdb.d/initdb.sh",
+//              BindMode.READ_ONLY);
 
   public static class Initializer
       implements ApplicationContextInitializer<ConfigurableApplicationContext> {
     @Override
     public void initialize(ConfigurableApplicationContext applicationContext) {
       TestPropertyValues.of(
-              "spring.datasource.username: username",
-              "spring.datasource.password: password",
-              "spring.datasource.url: " + POSTGRES.getJdbcUrl())
+              "spring.datasource.username: " + POSTGRES.getUsername(),
+              "spring.datasource.password: " + POSTGRES.getPassword(),
+              "spring.datasource.url: " + POSTGRES.getJdbcUrl(),
+              "spring.flyway.user: " + POSTGRES.getUsername(),
+              "spring.flyway.password: " + POSTGRES.getPassword())
           .applyTo(applicationContext.getEnvironment());
     }
   }

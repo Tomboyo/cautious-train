@@ -11,6 +11,10 @@ Github randomly generated the name.
 
 ## Troubleshooting Tests
 
+### Could not find a valid Docker environment.
+
+This is because docker is not started. Run `systemctl start docker` to resolve.
+
 ### Can not connect to Ryuk at localhost:<ephemeral port>
 
 This is caused by an incompatibility between testcontainers and your docker engine. Update to the latest version
