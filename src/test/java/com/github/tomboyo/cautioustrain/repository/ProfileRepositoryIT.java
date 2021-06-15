@@ -28,10 +28,6 @@ public class ProfileRepositoryIT {
   @Container
   private static final PostgreSQLContainer<?> POSTGRES =
       new PostgreSQLContainer<>(DockerImageName.parse("postgres:13"));
-//          .withFileSystemBind(
-//              "./docker-compose/initdb.sh",
-//              "/docker-entrypoint-initdb.d/initdb.sh",
-//              BindMode.READ_ONLY);
 
   public static class Initializer
       implements ApplicationContextInitializer<ConfigurableApplicationContext> {
