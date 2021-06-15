@@ -2,7 +2,6 @@ package com.github.tomboyo.cautioustrain.repository;
 
 import com.github.tomboyo.cautioustrain.model.Profile;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -10,8 +9,8 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.util.TestPropertyValues;
 import org.springframework.context.ApplicationContextInitializer;
 import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
-import org.testcontainers.containers.BindMode;
 import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
@@ -34,8 +33,6 @@ public class ProfileRepositoryIT {
     @Override
     public void initialize(ConfigurableApplicationContext applicationContext) {
       TestPropertyValues.of(
-              "spring.datasource.username: " + POSTGRES.getUsername(),
-              "spring.datasource.password: " + POSTGRES.getPassword(),
               "spring.datasource.url: " + POSTGRES.getJdbcUrl(),
               "spring.flyway.user: " + POSTGRES.getUsername(),
               "spring.flyway.password: " + POSTGRES.getPassword())

@@ -1,4 +1,0 @@
-# Do not specify port mappings. See https://www.testcontainers.org/modules/docker_compose/
-services:
-  rabbitmq:
-    image: rabbitmq:latest

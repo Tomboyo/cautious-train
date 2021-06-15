@@ -1,11 +1,7 @@
-CREATE USER username WITH PASSWORD 'password';
-GRANT CONNECT ON DATABASE ${flyway:database} TO username;
-GRANT USAGE ON SCHEMA public TO username;
+CREATE USER ${username} WITH PASSWORD '${password}';
 ALTER DEFAULT PRIVILEGES
-  FOR USER username
   IN SCHEMA public
-  GRANT ALL ON TABLES TO username;
+  GRANT ALL ON TABLES TO ${username};
 ALTER DEFAULT PRIVILEGES
-  FOR USER username
-  IN SCHEMA public
-  GRANT ALL ON SEQUENCES TO username;
+  IN SCHEMA PUBLIC
+  GRANT ALL ON SEQUENCES TO ${username};
