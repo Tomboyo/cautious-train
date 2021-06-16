@@ -22,6 +22,7 @@ import static org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTest
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = NONE)
 @ContextConfiguration(initializers = ProfileRepositoryIT.Initializer.class)
+@ActiveProfiles("test")
 public class ProfileRepositoryIT {
 
   @Container

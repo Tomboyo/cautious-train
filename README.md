@@ -2,8 +2,7 @@
 
 This is a sandbox project to work with the following:
 
-- Spring Cloud Stream
-- Spring Cloud Function
+- Spring Boot (JMS)
 - Spring Data JPA
 - Testcontainers
 

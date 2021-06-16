@@ -1,15 +1,9 @@
 spring:
-  cloud:
-    #function:
-    #  # Only required when more than one top-level bean defined
-    #  definition: 'processor'
-    stream:
-      bindings:
-        handler-in-0.destination: 'profiles'
+  # See https://docs.spring.io/spring-boot/docs/current/reference/html/features.html#features.messaging.jms.artemis
+  artemis:
+    mode: 'native'
   datasource:
     driver-class-name: 'org.postgresql.Driver'
-    username: 'testusername'
-    password: 'testpassword'
   flyway:
     placeholders:
       username: '${spring.datasource.username}'
