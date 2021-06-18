@@ -1,7 +1,8 @@
-package com.github.tomboyo.cautioustrain.repository;
+package com.github.tomboyo.cautioustrain.profile;
 
 import com.github.tomboyo.cautioustrain.PostgresContainer;
-import com.github.tomboyo.cautioustrain.model.Profile;
+import com.github.tomboyo.cautioustrain.profile.Profile;
+import com.github.tomboyo.cautioustrain.profile.ProfileRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,16 +23,16 @@ import static org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTest
 @ActiveProfiles("test")
 public class ProfileRepositoryIT {
 
-  @Container static final PostgreSQLContainer<?> POSTGRES = PostgresContainer.get();
+  @Container private static final PostgreSQLContainer<?> POSTGRES = PostgresContainer.get();
 
   @DynamicPropertySource
-  static void postgresProperties(DynamicPropertyRegistry registry) {
+  private static void postgresProperties(DynamicPropertyRegistry registry) {
     registry.add("spring.datasource.url", POSTGRES::getJdbcUrl);
     registry.add("spring.flyway.user", POSTGRES::getUsername);
     registry.add("spring.flyway.password", POSTGRES::getPassword);
   }
 
-  @Autowired ProfileRepository repository;
+  @Autowired private ProfileRepository repository;
 
   @Test
   public void shouldSaveAndFetchProfile() {

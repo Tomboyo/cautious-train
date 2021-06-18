@@ -1,4 +1,5 @@
-CREATE TABLE profile (
-  id serial PRIMARY KEY,
-  name varchar(256)
+CREATE TABLE profile
+(
+    id   uuid PRIMARY KEY,
+    name varchar(256)
 );

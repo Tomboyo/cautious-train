@@ -1,12 +1,12 @@
-package com.github.tomboyo.cautioustrain.jms;
+package com.github.tomboyo.cautioustrain.profile;
 
-import com.github.tomboyo.cautioustrain.repository.ProfileRepository;
-import com.github.tomboyo.cautioustrain.model.Profile;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.annotation.JmsListener;
 import org.springframework.stereotype.Component;
+
+import java.util.stream.Stream;
 
 @Component
 public class ProfileJmsListener {
@@ -16,16 +16,13 @@ public class ProfileJmsListener {
   private final ProfileRepository profileRepository;
 
   @Autowired
-  public ProfileJmsListener(
-      ProfileRepository profileRepository
-  ) {
+  public ProfileJmsListener(ProfileRepository profileRepository) {
     this.profileRepository = profileRepository;
   }
 
   @JmsListener(destination = "profiles")
-  public void consume(Profile profile) {
+  public void consume(JmsProfile profile) {
     LOGGER.info("Received profile: profile={}", profile);
-    profileRepository.save(profile);
-    LOGGER.info("Persisted profile: profile={}", profile);
+    profileRepository.save(JmsTransform.toModelProfile(profile));
   }
 }

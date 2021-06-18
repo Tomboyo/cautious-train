@@ -1,30 +1,25 @@
-package com.github.tomboyo.cautioustrain.model;
+package com.github.tomboyo.cautioustrain.profile;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 import java.util.Objects;
-
-import static javax.persistence.GenerationType.IDENTITY;
+import java.util.UUID;
 
 @Entity
 public class Profile {
-  @Id
-  @GeneratedValue(strategy = IDENTITY)
-  private Long id;
+  @Id private final UUID id;
 
   @Column(name = "name")
   private String name;
 
-  public Long getId() {
-    return id;
+  public Profile() {
+    id = UUID.randomUUID();
   }
 
-  public Profile id(Long id) {
-    this.id = id;
-    return this;
+  public UUID getId() {
+    return id;
   }
 
   public String getName() {
@@ -41,11 +36,11 @@ public class Profile {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
     Profile profile = (Profile) o;
-    return Objects.equals(id, profile.id) && Objects.equals(name, profile.name);
+    return Objects.equals(id, profile.id);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name);
+    return Objects.hash(id);
   }
 }
