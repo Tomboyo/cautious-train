@@ -6,7 +6,7 @@ import org.springframework.jms.annotation.EnableJms;
 import org.springframework.jms.support.converter.MappingJackson2MessageConverter;
 import org.springframework.jms.support.converter.MessageConverter;
 
-@Configuration(proxyBeanMethods = false)
+@Configuration
 @EnableJms
 public class JmsConfiguration {
   @Bean

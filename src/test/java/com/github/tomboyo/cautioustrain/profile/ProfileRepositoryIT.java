@@ -1,8 +1,6 @@
 package com.github.tomboyo.cautioustrain.profile;
 
 import com.github.tomboyo.cautioustrain.PostgresContainer;
-import com.github.tomboyo.cautioustrain.profile.Profile;
-import com.github.tomboyo.cautioustrain.profile.ProfileRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

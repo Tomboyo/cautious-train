@@ -1,7 +1,4 @@
 spring:
-  artemis:
-    user: 'testuser'
-    password: 'testpassword'
   datasource:
     username: 'testusername'
     password: 'testpassword'
