@@ -1,6 +1,6 @@
 package com.github.tomboyo.cautioustrain.profile;
 
-import com.github.tomboyo.cautioustrain.AmqContainer;
+import com.github.tomboyo.cautioustrain.ArtemisContainer;
 import com.github.tomboyo.cautioustrain.spring.JmsTest;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +20,7 @@ import static org.mockito.Mockito.verify;
 @JmsTest
 public class ProfileJmsListernerIT {
 
-  @Container private static final AmqContainer<?> AMQ = new AmqContainer<>();
+  @Container private static final ArtemisContainer<?> AMQ = new ArtemisContainer<>();
 
   @DynamicPropertySource
   private static void amqpProperties(DynamicPropertyRegistry registry) {

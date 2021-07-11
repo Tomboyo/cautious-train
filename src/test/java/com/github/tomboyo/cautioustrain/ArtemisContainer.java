@@ -3,14 +3,12 @@ package com.github.tomboyo.cautioustrain;
 import org.testcontainers.containers.GenericContainer;
 import org.testcontainers.utility.DockerImageName;
 
-import java.util.Map;
-
-public class AmqContainer<SELF extends AmqContainer<SELF>> extends GenericContainer<SELF> {
+public class ArtemisContainer<SELF extends ArtemisContainer<SELF>> extends GenericContainer<SELF> {
 
   private static final String USER = "admin";
   private static final String PASSWORD = "password";
 
-  public AmqContainer() {
+  public ArtemisContainer() {
     super(DockerImageName.parse("registry.redhat.io/amq7/amq-broker:7.5"));
 
     addEnv("AMQ_USER", USER);
@@ -24,7 +22,7 @@ public class AmqContainer<SELF extends AmqContainer<SELF>> extends GenericContai
    *
    * @return the container for chaining
    */
-  public AmqContainer<SELF> withQueues(String queues) {
+  public ArtemisContainer<SELF> withQueues(String queues) {
     addEnv("AMQ_QUEUES", queues);
     return this;
   }
