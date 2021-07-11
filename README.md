@@ -1,12 +1,22 @@
 # Cautious Train
 
-This is a sandbox project to work with the following:
+This is a sandbox project to work with a few different technologies. Goals are as follows:
 
-- Spring Boot (JMS)
-- Spring Data JPA
-- Testcontainers
-
-Github randomly generated the name.
+- [x] Integrate with PostgreSQL via a DataJPA repository
+    - [x] Set up ITs against PostgreSQL using Testcontainers
+    - [x] Instrument schema migrations using Flyway
+        - [x] Incorporate migrations into ITs
+- [x] Integrate with Artemis via Spring JMS
+    - [x] Set up ITs against Artemis using Testcontainers
+    - [ ] How should we manage destination names (i.e., other than with brittle string literals)
+    - [ ] Configure message retry:
+        - [ ] If a processing attempt encounters an exception, redeliver the message for another attempt.
+        - [ ] If a message cannot be processed after some small number of attempts, move it to a DLQ for later analysis.
+    - [ ] Configure an upper bound on the length or size of a queue to prevent memory exhaustion in a disaster scenario.
+- [ ] Integrate with MongoDB via (Spring Data
+  MongoDB)[https://docs.spring.io/spring-data/mongodb/docs/3.2.2/reference/html/#mongo.core]
+    - [ ] Set up ITs against MongoDB using Testcontainers
+- [ ] (Needs research) Integrate with unleashed/togglz to practice with feature flags
 
 ## Design
 
